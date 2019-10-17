@@ -1,0 +1,67 @@
+<html>
+<!--
+            Copyright 2019 The CRDS Authors.
+        
+        Licensed under the Apache License, Version 2.0 (the "License");
+        you may not use this file except in compliance with the License.
+        You may obtain a copy of the License at
+        
+            http://www.apache.org/licenses/LICENSE-2.0
+        
+        Unless required by applicable law or agreed to in writing, software
+        distributed under the License is distributed on an "AS IS" BASIS,
+        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+        See the License for the specific language governing permissions and
+        limitations under the License.
+        -->
+
+<head>
+    <title>crds</title>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116820283-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-116820283-2');
+    </script>
+
+    <style>
+        body {
+            text-align: center;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0px;
+            font-family: helvetica;
+            background-color: #326CE5;
+        }
+
+        #wrapper {
+            text-align: center;
+            margin: 0 auto;
+            padding: 0px;
+            width: 995px;
+        }
+
+        h1 {
+            margin-top: 150px;
+            color: white;
+            font-size: 45px;
+        }
+
+        p,
+        a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <h1>{{.Acronym}}</h1>
+        <p>Brought to you by <a href="https://github.com/hasheddan">@hasheddan</a>.</p>
+    </div>
+</body>
+
+</html>
