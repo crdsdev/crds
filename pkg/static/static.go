@@ -30,15 +30,17 @@ type DataFunc func() interface{}
 type Server struct {
 	startupMsg string
 	logMsg     string
+	staticDir  string
 	template   *template.Template
 	dataFunc   DataFunc
 }
 
 // New creates a new static Server.
-func New(startupMsg string, logMsg string, template *template.Template, dataFunc DataFunc) *Server {
+func New(startupMsg string, logMsg string, staticDir string, template *template.Template, dataFunc DataFunc) *Server {
 	return &Server{
 		startupMsg: startupMsg,
 		logMsg:     logMsg,
+		staticDir:  staticDir,
 		template:   template,
 		dataFunc:   dataFunc,
 	}
@@ -47,7 +49,8 @@ func New(startupMsg string, logMsg string, template *template.Template, dataFunc
 // Serve starts a static site http server.
 func (s *Server) Serve(port string) error {
 	log.Print("Started serving static site.")
-
+	fs := http.FileServer(http.Dir(s.staticDir))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", handler(s.logMsg, s.template, s.dataFunc))
 
 	if port == "" {

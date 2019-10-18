@@ -38,7 +38,7 @@ type indexData struct {
 	Acronym string
 }
 
-// helloCmd represents the hello command
+// staticCmd represents the static command
 var staticCmd = &cobra.Command{
 	Use:   "static",
 	Short: "Serves the static crds website.",
@@ -54,7 +54,7 @@ var staticCmd = &cobra.Command{
 			}
 		}
 
-		log.Fatal(static.New("Started serving static site.", "Request recieved.", indexTmpl, dataFunc).Serve(port))
+		log.Fatal(static.New("Started serving static site.", "Request received.", "public/assets", indexTmpl, dataFunc).Serve(port))
 	},
 }
 

@@ -29,6 +29,7 @@ func TestNew(t *testing.T) {
 		name       string
 		startupMsg string
 		logMsg     string
+		staticDir  string
 		template   *template.Template
 		dataFunc   DataFunc
 		want       *Server
@@ -37,11 +38,13 @@ func TestNew(t *testing.T) {
 			name:       "Successful",
 			startupMsg: "Some message.",
 			logMsg:     "Some other message.",
+			staticDir:  "public/assets",
 			template:   blankTemp,
 			dataFunc:   empty,
 			want: &Server{
 				startupMsg: "Some message.",
 				logMsg:     "Some other message.",
+				staticDir:  "public/assets",
 				template:   blankTemp,
 				dataFunc:   empty,
 			},
@@ -50,12 +53,15 @@ func TestNew(t *testing.T) {
 
 	for _, tc := range cases {
 		t.Run(tc.name, func(t *testing.T) {
-			got := New(tc.startupMsg, tc.logMsg, tc.template, tc.dataFunc)
+			got := New(tc.startupMsg, tc.logMsg, tc.staticDir, tc.template, tc.dataFunc)
 			if got.startupMsg != tc.want.startupMsg {
 				t.Errorf("New(...): got %v, want %v", got.startupMsg, tc.want.startupMsg)
 			}
 			if got.logMsg != tc.want.logMsg {
 				t.Errorf("New(...): got %v, want %v", got.logMsg, tc.want.logMsg)
+			}
+			if got.staticDir != tc.want.staticDir {
+				t.Errorf("New(...): got %v, want %v", got.staticDir, tc.want.staticDir)
 			}
 			if got.template != tc.want.template {
 				t.Errorf("New(...): got %v, want %v", got.template, tc.want.template)
