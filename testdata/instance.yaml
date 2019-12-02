@@ -1,0 +1,13 @@
+apiVersion: cache.gcp.crossplane.io/v1alpha2
+kind: CloudMemorystoreInstanceClass
+metadata:
+  name: gcp-redis-standard
+  namespace: gcp-infra-dev
+specTemplate:
+  tier: STANDARD_HA
+  region: us-west2
+  memorySizeGb: 1
+  providerRef:
+    name: example
+    namespace: gcp-infra-dev
+  reclaimPolicy: Delete
