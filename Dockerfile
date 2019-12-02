@@ -15,7 +15,7 @@ RUN go mod download
 COPY . ./
 
 # Build the binary.
-RUN CGO_ENABLED=0 GOOS=linux go build -mod=readonly -v -o crds
+RUN CGO_ENABLED=0 GOOS=linux go build ./cmd/static -mod=readonly -v -o static
 
 # Use the official Alpine image for a lean production container.
 # https://hub.docker.com/_/alpine
@@ -28,4 +28,4 @@ COPY --from=builder /app/crds /crds
 COPY ./public /public
 
 # Run the web service on container startup.
-ENTRYPOINT ["/crds", "static"]
+ENTRYPOINT ["/static"]

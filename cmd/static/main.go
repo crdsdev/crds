@@ -14,9 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package cmd
+package main
 
 import (
+	"fmt"
 	"html/template"
 	"log"
 	"os"
@@ -39,7 +40,7 @@ type indexData struct {
 }
 
 // staticCmd represents the static command
-var staticCmd = &cobra.Command{
+var cmd = &cobra.Command{
 	Use:   "static",
 	Short: "Serves the static crds website.",
 	Long:  `Serves the static crds website using golang templates.`,
@@ -58,6 +59,9 @@ var staticCmd = &cobra.Command{
 	},
 }
 
-func init() {
-	rootCmd.AddCommand(staticCmd)
+func main() {
+	if err := cmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 }
