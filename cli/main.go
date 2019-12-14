@@ -17,7 +17,7 @@ limitations under the License.
 package main
 
 import (
-	"github.com/hasheddan/crds/cmd/cli/cmd"
+	"github.com/crdsdev/crds/cli/cmd"
 )
 
 // Execute runs the root command.

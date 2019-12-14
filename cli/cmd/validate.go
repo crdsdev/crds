@@ -20,7 +20,7 @@ import (
 	"io/ioutil"
 	"log"
 
-	"github.com/hasheddan/crds/pkg/crder"
+	"github.com/crdsdev/crds/internal/crder"
 	"github.com/spf13/cobra"
 )
 
