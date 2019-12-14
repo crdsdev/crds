@@ -23,8 +23,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/hasheddan/crds/pkg/acronym"
-	"github.com/hasheddan/crds/pkg/static"
+	"github.com/crdsdev/crds/internal/acronym"
+	"github.com/crdsdev/crds/internal/static"
 	"github.com/spf13/cobra"
 )
 
