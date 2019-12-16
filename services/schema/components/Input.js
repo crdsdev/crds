@@ -1,4 +1,5 @@
-import { Button, Icon, Input, Select } from 'semantic-ui-react'
+import { Button, Icon, Input, Select, Label } from 'semantic-ui-react'
+import Require from './Require'
 
 function indenter(i) {
     return {
@@ -22,26 +23,31 @@ export default class FieldInput extends React.Component {
         this.typeChange = this.typeChange.bind(this);
         this.indentsInc = this.indentsInc.bind(this);
         this.indentsDec = this.indentsDec.bind(this);
+        this.optionalSwitch = this.optionalSwitch.bind(this);
         this.addField = this.addField.bind(this);
         this.removeSelf = this.removeSelf.bind(this);
     }
 
     nameChange(e) {
-        this.props.updater(e.target.value, this.props.field.id, this.props.field.type, this.props.field.indents);
+        this.props.updater(e.target.value, this.props.field.id, this.props.field.type, this.props.field.optional, this.props.field.indents);
     }
 
     typeChange(e, { value }) {
-        this.props.updater(this.props.field.name, this.props.field.id, value, this.props.field.indents);
+        this.props.updater(this.props.field.name, this.props.field.id, value, this.props.field.optional, this.props.field.indents);
     }
 
     indentsInc() {
-        this.props.updater(this.props.field.name, this.props.field.id, this.props.field.type, this.props.field.indents + 1);
+        this.props.updater(this.props.field.name, this.props.field.id, this.props.field.type, this.props.field.optional, this.props.field.indents + 1);
     }
 
     indentsDec() {
         if (this.props.field.indents > 0) {
-            this.props.updater(this.props.field.name, this.props.field.id, this.props.field.type, this.props.field.indents - 1);
+            this.props.updater(this.props.field.name, this.props.field.id, this.props.field.type, this.props.field.optional, this.props.field.indents - 1);
         }
+    }
+
+    optionalSwitch() {
+        this.props.updater(this.props.field.name, this.props.field.id, this.props.field.type, !this.props.field.optional, this.props.field.indents);
     }
 
     addField() {
@@ -57,10 +63,11 @@ export default class FieldInput extends React.Component {
             <div id={this.props.field.id} style={indenter(this.props.field.indents)}>
                 <Input onChange={this.nameChange} value={this.props.field.name}></Input>
                 <Select value={this.props.field.type} onChange={this.typeChange} options={typeOptions}></Select>
-                <Button onClick={this.indentsDec} icon>\</Button>
-                <Button onClick={this.indentsInc} icon>/</Button>
-                <Button onClick={this.addField} positive icon>+</Button>
-                <Button onClick={this.removeSelf} negative icon>x</Button>
+                <Require onClick={this.optionalSwitch} true={this.props.field.optional} />
+                <Button onClick={this.indentsDec} icon><Icon name="chevron left" /></Button>
+                <Button onClick={this.indentsInc} icon><Icon name="chevron right" /></Button>
+                <Button onClick={this.addField} positive icon><Icon name="plus" /></Button>
+                <Button onClick={this.removeSelf} negative icon><Icon name="trash" /></Button>
             </div>
         )
     }
