@@ -31,21 +31,21 @@ export default function Header() {
       <Link href="/builder">
         <a style={linkStyle}>Builder
         <Label style={labelStyle} color="blue">
-        Beta
+            Beta
         </Label>
         </a>
       </Link>
       <Link href="/soon">
         <a style={linkStyle}>Validator
         <Label style={labelStyle} color="red">
-        Coming Soon
+            Coming Soon
         </Label>
         </a>
       </Link>
       <Link href="/soon">
         <Button style={linkRight} inverted icon labelPosition='left'>
-         <Icon name='github' />
-         Sign In
+          <Icon name='github' />
+          Sign In
         </Button>
       </Link>
     </div>

@@ -69,9 +69,9 @@ export default class FieldInput extends React.Component {
     hoverOff() {
         this.setState({ hover: false })
     }
-    
+
     hoverOn() {
-        this.setState({ hover: true})
+        this.setState({ hover: true })
     }
 
     render() {
@@ -79,14 +79,14 @@ export default class FieldInput extends React.Component {
             <div id={this.props.field.id} style={indenter(this.props.field.indents)} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}>
                 <Input placeholder="fieldName" onChange={this.nameChange} value={this.props.field.name}></Input>
                 <Select value={this.props.field.type} onChange={this.typeChange} options={typeOptions}></Select>
-                <Require  onClick={this.optionalSwitch} true={this.props.field.optional} />
-                { this.state.hover &&
-                <span>
-                    <Button onClick={this.indentsDec} icon><Icon name="chevron left" /></Button>
-                    <Button onClick={this.indentsInc} icon><Icon name="chevron right" /></Button>
-                    <Button onClick={this.addField} positive icon><Icon name="plus" /></Button>
-                    <Button onClick={this.removeSelf} negative icon><Icon name="trash" /></Button>
-                </span>
+                <Require onClick={this.optionalSwitch} true={this.props.field.optional} />
+                {this.state.hover &&
+                    <span>
+                        <Button onClick={this.indentsDec} icon><Icon name="chevron left" /></Button>
+                        <Button onClick={this.indentsInc} icon><Icon name="chevron right" /></Button>
+                        <Button onClick={this.addField} positive icon><Icon name="plus" /></Button>
+                        <Button onClick={this.removeSelf} negative icon><Icon name="trash" /></Button>
+                    </span>
                 }
             </div>
         )
