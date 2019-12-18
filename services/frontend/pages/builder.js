@@ -1,6 +1,13 @@
 import 'semantic-ui-css/semantic.min.css'
-import Layout from '../components/MyLayout.js'
+import { Button } from 'semantic-ui-react'
+import Layout from '../components/Layout.js'
 import FieldInput from '../components/Input.js'
+
+const floatStyle = {
+    position: "fixed",
+    right: "5%",
+    bottom: "5%"
+}
 
 class field {
     constructor(id, name, type, optional, indents) {
@@ -53,12 +60,14 @@ export default class Builder extends React.Component {
     }
 
     render() {
-        console.log(this.state.inputs)
         return (
             <Layout>
+                <h1 style={{ color: "white" }}>CRD Schema Builder</h1>
+                <p style={{ color: "white" }}>Design your schema then generate your CustomResourceDefintion.</p>
                 {this.state.inputs.map(f =>
                     <FieldInput key={f.id} field={f} updater={this.updateField} deleter={this.deleteField} adder={this.addField}></FieldInput>
                 )}
+                <Button style={floatStyle} color="green" inverted>Generate</Button>
             </Layout>
         )
     }
