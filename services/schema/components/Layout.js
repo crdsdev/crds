@@ -1,11 +1,11 @@
 import Header from './Header'
 
 const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD',
-  width: '50vw',
-  height: '100%'
+  padding: "2% 2% 2% 2%",
+  border: '4px solid #DDD',
+  backgroundColor: "black",
+  height: "100vh",
+  overflow: "auto"
 }
 
 export default function Layout(props) {
