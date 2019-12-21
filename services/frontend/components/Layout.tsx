@@ -1,3 +1,4 @@
+import React from 'react'
 import Header from './Header'
 
 const layoutStyle = {
@@ -8,7 +9,11 @@ const layoutStyle = {
   overflow: "auto"
 }
 
-export default function Layout(props) {
+interface LayoutProps {
+  children: any;
+};
+
+export default function Layout(props: LayoutProps) {
   return (
     <div style={layoutStyle}>
       <Header />

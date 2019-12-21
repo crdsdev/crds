@@ -1,11 +1,11 @@
-const path = require('path');
-const grpc = require('grpc');
-const protoLoader = require('@grpc/proto-loader');
+// import { NextApiRequest, NextApiResponse } from 'next'
+import * as grpc from 'grpc';
+import * as protoLoader from '@grpc/proto-loader';
 
 const PROTO_PATH = './proto/crds.proto';
 const PORT = 7000;
 
-var packageDefinition = protoLoader.loadSync(
+const packageDefinition = protoLoader.loadSync(
     PROTO_PATH,
     {
         keepCase: true,
@@ -14,8 +14,8 @@ var packageDefinition = protoLoader.loadSync(
         defaults: true,
         oneofs: true
     });
-var crds = grpc.loadPackageDefinition(packageDefinition).crds;
-var client = new crds.EchoService('localhost:' + PORT,
+const crds = grpc.loadPackageDefinition(packageDefinition).crds;
+const client = new crds.EchoService('localhost:' + PORT,
     grpc.credentials.createInsecure());
 
 export default (req, res) => {
