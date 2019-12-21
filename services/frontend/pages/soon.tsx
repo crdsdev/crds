@@ -1,13 +1,15 @@
+import React from 'react'
 import 'semantic-ui-css/semantic.min.css'
-import Layout from '../components/Layout.js'
+import Layout from '../components/Layout'
+import { CSSProperties } from 'react'
 
-const h1style = {
+const h1style: CSSProperties = {
     color: "#fff",
     textShadow: "2px 2px #a9a9a9",
     textAlign: "center"
 }
 
-const h3style = {
+const h3style: CSSProperties = {
     color: "white",
     textAlign: "center"
 }
