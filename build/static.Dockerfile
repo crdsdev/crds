@@ -3,22 +3,17 @@
 # https://hub.docker.com/_/golang
 FROM golang:1.13 as builder
 
-# Copy internal libraries.
-COPY internal /internal
+WORKDIR app/
 
-# Create and change to the service directory.
-WORKDIR /services/static
+# Copy internal libraries.
+COPY . .
 
 # Retrieve application dependencies.
 # This allows the container build to reuse cached dependencies.
-COPY ./services/static/go.* ./
 RUN go mod download
 
-# Copy local code to the container image.
-COPY ./services/static .
-
 # Build the binary.
-RUN CGO_ENABLED=0 GOOS=linux go build -mod=readonly -v -o static
+RUN CGO_ENABLED=0 GOOS=linux go build -mod=readonly -v ./services/static
 
 # Use the official Alpine image for a lean production container.
 # https://hub.docker.com/_/alpine
@@ -27,7 +22,7 @@ FROM alpine:3
 RUN apk add --no-cache ca-certificates
 
 # Copy the binary to the production image from the builder stage.
-COPY --from=builder /services/static ./
+COPY --from=builder go/app/static ./
 COPY ./services/static/public ./public
 
 # Run the web service on container startup.
